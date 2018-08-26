@@ -32,14 +32,49 @@ describe('Food endpoints', function() {
     });
   });
 
+  describe("GET /api/v1/foods", () => {
+    it('returns all foods in the database', (done) => {
+      chai.request(app)
+      .get('/api/v1/foods')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        expect(res.body.length).to.eql(5);
+        expect(res.body[0].name).to.eq("Elote");
+        expect(res.body[0].calories).to.eq(500);
+        done();
+      })
+    })
+  })
+
+  describe("GET /api/v1/foods/:id", () => {
+    it('returns food corresponding to :id', (done) => {
+      chai.request(app)
+      .get('/api/v1/foods/1')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        expect(res.body.name).to.eq("Elote");
+        done();
+      })
+    })
+
+    it('returns 404 if there is no record', (done) => {
+      chai.request(app)
+      .get('/api/v1/foods/100')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      })
+    })
+  })
+
 describe("POST /api/v1/foods", () => {
   it('creates a new food object in the database', (done) => {
     chai.request(app)
     .post('/api/v1/foods')
     .send({ "food": { "name": "pizza", "calories": 250} })
     .end((err, res) => {
-      debugger
-      console.log(res.body)
       expect(err).to.be.null;
       expect(res).to.have.status(201);
       expect(res.body.name).to.eq("pizza");

@@ -4,13 +4,11 @@ class FoodsController {
   static index(request, response, next) {
     Food.all()
     .then(foods => response.json(foods))
-    debugger
   }
 
   static create(request, response, next) {
     let foodParams = request.body.food
     if(foodParams.calories && foodParams.name) {
-      console.log(response.body)
       Food.create(foodParams)
       .then(food => response.status(201).json(food))
     } else {
