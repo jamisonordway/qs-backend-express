@@ -3,6 +3,7 @@ const Food = require('../models/food')
 class FoodsController {
   static index(request, response, next) {
     Food.all()
+    console.log(foods)
     .then(foods => response.json(foods))
   }
 

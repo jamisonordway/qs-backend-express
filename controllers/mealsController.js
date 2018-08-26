@@ -3,7 +3,7 @@ const Meal = require('../models/meal')
 class MealsController {
   static index(request, response, next) {
     Meal.all()
-    .thn(meals => response.json(meals))
+    .then(meals => response.json(meals))
   }
 
   static show(request, response, next) {

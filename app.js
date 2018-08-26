@@ -32,8 +32,8 @@ app.options('*', cors())
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-app.use('/api/v1/foods', foodsRouter)
-app.use('/api/v1/meals', mealsRouter)
+app.use('api/v1/foods', foodsRouter)
+app.use('api/v1/meals', mealsRouter)
 
 
 // catch 404 and forward to error handler
