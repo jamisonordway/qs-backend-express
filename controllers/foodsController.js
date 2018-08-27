@@ -45,15 +45,36 @@ class FoodsController {
 }
 
   static destroy(request, response, next ) {
-    Food.destroy(request.params.id)
-    .then(food => {
-      if(food) {
-        response.sendStatus(204)
+    let foodId = request.params.id
+    MealFood.find(foodId)
+    .then(mealFood => {
+      if (mealFood.length > 0) {
+      response.sendStatus(404);
       } else {
-        response.sendStatus(404)
+        Food.destroy(foodId)
+        .then((destroyedFood) => {
+          if (destroyedFood) {
+            response.sendStatus(204);
+          } else {
+            response.sendStatus(404);
+          }
+        })
       }
     })
   }
 }
+  
+  
+
+//     Food.destroy(request.params.id)
+//     .then(food => {
+//       if(food) {
+//         response.sendStatus(204)
+//       } else {
+//         response.sendStatus(404)
+//       }
+//     })
+//   }
+// }
 
 module.exports = FoodsController
