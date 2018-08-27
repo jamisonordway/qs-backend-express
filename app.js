@@ -20,6 +20,19 @@ app.set('view engine', 'ejs');
 
 app.set('port', process.env.PORT || 8000)
 
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,8 +45,8 @@ app.options('*', cors())
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-app.use('api/v1/foods', foodsRouter)
-app.use('api/v1/meals', mealsRouter)
+app.use('/api/v1/foods', foodsRouter)
+app.use('/api/v1/meals', mealsRouter)
 
 
 // catch 404 and forward to error handler

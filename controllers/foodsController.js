@@ -20,6 +20,7 @@ class FoodsController {
     Food.find(request.params.id)
     .then(food => {
     if(food) {
+      // debugger
       response.json(food)
     } else {
       response.sendStatus(404)
