@@ -9,10 +9,14 @@ const baseURL = 'http://api.yummly.com/v1/api/recipes'
 
 class Recipe {
   static all(food) {
+    // return fetch(`${baseURL}?q=${food.name}`, {
+    // using the version of fetch on line 12 would be more conventional, but gives FetchError: invalid json response body 
+    // at http://api.yummly.com/v1/api/recipes/?q=Oatmeal reason: Unexpected end of JSON input
+    // Promise rejection
     return fetch(`${baseURL}?_app_id=${process.env.YUMMLY_APP_ID}&_app_key=${process.env.YUMMLY_APP_KEY}&${food.name}`, {
-      headers: new Headers({'Content-Type': 'application/json' ,
+      headers: {'Content-Type': 'application/json', 
       'X-Yummly-App-ID': process.env.YUMMLY_APP_ID,
-      'X-Yummly-Api-Key': process.env.YUMMLY_APP_KEY })
+      'X-Yummly-Api-Key': process.env.YUMMLY_APP_KEY }
     })
     .then((response) => {
       return response.json()
