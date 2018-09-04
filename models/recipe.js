@@ -10,9 +10,9 @@ const baseURL = 'http://api.yummly.com/v1/api/recipes'
 class Recipe {
   static all(food) {
     return fetch(`${baseURL}?_app_id=${process.env.YUMMLY_APP_ID}&_app_key=${process.env.YUMMLY_APP_KEY}&${food.name}`, {
-      headers: {'Content-Type': 'application/json' }
-      // 'X-Yummly-App-ID': process.env.YUMMLY_APP_ID,
-      // 'X-Yummly-Api-Key': process.env.YUMMLY_APP_KEY }
+      headers: new Headers({'Content-Type': 'application/json' ,
+      'X-Yummly-App-ID': process.env.YUMMLY_APP_ID,
+      'X-Yummly-Api-Key': process.env.YUMMLY_APP_KEY })
     })
     .then((response) => {
       return response.json()
