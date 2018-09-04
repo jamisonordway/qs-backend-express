@@ -29,4 +29,6 @@ class Recipe {
   }
 }
 
+// comment to test deploy success
+
 module.exports = Recipe
