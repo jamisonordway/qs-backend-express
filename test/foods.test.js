@@ -41,7 +41,7 @@ describe('Food endpoints', function() {
         expect(res).to.have.status(200);
         expect(res.body.length).to.eql(5);
         expect(res.body[0].name).to.eq("Elote");
-        expect(res.body[0].calories).to.eq(500);
+        expect(res.body[0].calories).to.eql(500);
         done();
       })
     })
