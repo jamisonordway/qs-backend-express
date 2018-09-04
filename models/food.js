@@ -40,6 +40,20 @@ class Food {
       return meals
     })
   }
+
+  static favorites() {
+    return database.raw(
+      `SELECT timesEaten, json_agg(json_build_object('name', name, 'calories', calories)) AS foods
+      FROM (
+        SELECT foods.name, foods.calories, COUNT(foods.id) AS timesEaten
+        FROM foods
+        LEFT JOIN meal_foods ON foods.id = meal_foods.food_id
+        GROUP BY foods.id
+        ORDER BY timesEaten DESC
+      ) joinsQuery
+      GROUP BY timesEaten 
+      ORDER BY timesEaten DESC`)
+  }
 }
 
 module.exports = Food
