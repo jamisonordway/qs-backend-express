@@ -53,7 +53,8 @@ class Food {
         ORDER BY timesEaten DESC
       ) joinsQuery
       GROUP BY timesEaten 
-      ORDER BY timesEaten DESC`)
+      ORDER BY timesEaten DESC
+      LIMIT 5`)
   }
 }
 
