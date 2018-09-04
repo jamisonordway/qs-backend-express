@@ -40,8 +40,8 @@ describe('Food endpoints', function() {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
         expect(res.body.length).to.eql(5);
-        expect(res.body[0].name).to.eq("Elote");
-        expect(res.body[0].calories).to.eql(500);
+        expect(res.body[0].name).to.eq("Apple");
+        expect(res.body[0].calories).to.eql(100);
         done();
       })
     })
@@ -54,7 +54,7 @@ describe('Food endpoints', function() {
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        expect(res.body.name).to.eq("Elote");
+        expect(res.body.name).to.eq("Apple");
         done();
       })
     })
