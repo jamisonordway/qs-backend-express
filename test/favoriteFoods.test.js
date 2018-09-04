@@ -39,8 +39,8 @@ describe("GET /api/v1/favorite_foods", () => {
     .end((err, res) => {
       expect(err).to.be.null;
       expect(res).to.have.status(200);
-      console.log(res.body[0])
       expect(res.body[0].timeseaten).to.eql('3');
+      expect(res.body[0].foods[0].mealsWhenEaten).to.be.an('array')
       // expect(res.body.foods.length).to.eql(2);
       done();
       })
